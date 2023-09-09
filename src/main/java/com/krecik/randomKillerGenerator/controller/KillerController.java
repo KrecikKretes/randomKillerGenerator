@@ -1,28 +1,35 @@
 package com.krecik.randomKillerGenerator.controller;
 
-import com.krecik.randomKillerGenerator.service.KillerService;
-import lombok.NoArgsConstructor;
+import com.krecik.randomKillerGenerator.model.Killer;
+import com.krecik.randomKillerGenerator.repository.KillerRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequiredArgsConstructor
-@NoArgsConstructor(force = true)
 public class KillerController {
 
-    private final KillerService killerService;
+    private KillerRepository killerRepository;
 
-
-    @GetMapping("/killer")
+    //http://localhost:8080/h2-console@GetMapping("/killer")
+    /*
     public String getKiller(){
-
-
+        assert killerService != null;
         return killerService.getSingleKiller(1).getName();
     }
+     */
 
-    @GetMapping("/")
-    public String getTest(){
-        return ".....";
+    @GetMapping(path="/all")
+    public @ResponseBody Iterable<Killer> getAllKillers(){
+        return killerRepository.findAll();
+    }
+
+    @GetMapping("/index")
+    public String index(){
+        return "index";
     }
 }
