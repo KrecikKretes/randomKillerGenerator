@@ -1,0 +1,10 @@
+body{
+    margin:0 auto;
+    background-color: yellow;
+}
+p{
+    color: red;
+}
+td{
+    border: 1px blue solid;
+}
