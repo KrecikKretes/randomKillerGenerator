@@ -2,23 +2,25 @@ package com.krecik.randomKillerGenerator.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
-public class Killers {
+public class Maps {
 
     @Id
     private Integer id;
     private String name;
     private String file;
 
-    public Killers(Integer id, String name, String file) {
+    public Maps(Integer id, String name, String file) {
         this.id = id;
         this.name = name;
         this.file = file;
     }
 
-    public Killers() {
-
+    public Maps() {
     }
 
     public Integer getId() {
@@ -43,5 +45,14 @@ public class Killers {
 
     public void setFile(String file) {
         this.file = file;
+    }
+
+    @Override
+    public String toString() {
+        return "Maps{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", file='" + file + '\'' +
+                '}';
     }
 }

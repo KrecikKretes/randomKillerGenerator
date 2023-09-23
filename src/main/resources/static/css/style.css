@@ -1,23 +1,124 @@
 body{
-    margin:auto;
+    margin:0 auto;
     width: 100%;
-    background-color: yellow;
+    background-color: black;
     text-align: center;
+
 }
 p{
-    color: red;
+    color: white;
+    font-size: 15px;
+    font-family: Arial, serif;
+    font-weight: bold;
 }
 td{
-    border: 1px blue solid;
+   width:20%;
 }
 #div_killers{
-    margin:auto;
+    margin:0 auto;
     width: 66%;
-    background-color: aqua;
+    height: auto;
+    -webkit-animation-fill-mode: forwards;
 }
-table{
-    margin: 10px auto auto;
+#div_killers table{
+    margin: 10px 0 0;
+    width: 100%;
 }
-iframe{
-    width: 50%;
+#div_killers table td img{
+    margin:0 auto;
+    width: 100%;
+    height: auto;
+    opacity: 1;
+    cursor: pointer;
+}
+
+#div_maps{
+    margin:0 auto;
+    width: 40%;
+    height: auto;
+    visibility: hidden;
+}
+#div_maps table{
+    margin: 10px 0 0;
+    width: 100%;
+}
+#div_maps table td img{
+    margin:0 auto;
+    width: 100%;
+    height: auto;
+    opacity: 1;
+    cursor: pointer;
+}
+#div_addons{
+    margin:0 auto;
+    width: 25%;
+    height: auto;
+    visibility: hidden;
+}
+#div_addons table{
+    margin: 10px 0 0;
+    width: 100%;
+}
+#div_addons table td img{
+    margin:0 auto;
+    width: 100%;
+    height: auto;
+    opacity: 1;
+    cursor: pointer;
+}
+
+h1{
+    color: white;
+    font-size: 20px;
+}
+h2{
+    color: white;
+    font-size:15px;
+}
+
+#popupEnd{
+    width: 40%;
+    background: #090909;
+    border-radius: 6px;
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    padding: 0 30px 30px;
+    color: black;
+    visibility: hidden;
+    opacity: 0;
+}
+#popupKillerImg{
+    width: 100%;
+}
+@keyframes pulse-animation {
+    0% {
+        transform: scale(1);
+    }
+    50%{
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+@keyframes visibility-animation {
+    from {
+        visibility: visible;
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes opacityOff-animation {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
 }

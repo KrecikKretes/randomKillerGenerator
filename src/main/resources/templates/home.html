@@ -6,43 +6,100 @@
 <head>
     <meta charset="UTF-8">
     <title>KillerTitle</title>
-    <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
-    <script src="../static/js/script.js" th:src="@{/js/script.js}" rel="script"></script>
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
+    <script type="text/javascript" rel="script" th:src="@{/js/script.js}" ></script>
 </head>
-<body>
-    <p onclick="killers()" id="name11">asjdjasdjas</p>
+<body th:onload="start([[${killers}]], [[${maps}]])">
     <div id="div_killers">
+        <table>
+            <thead>
+                <td th:each="killer : ${killers}">
+                    <p th:class="'killer' + ${killer.getId()}" th:text="${killer.getName()}" th:onclick="changeOpacityImg([[${killer.getId()}]], 'killer')"></p>
+                </td>
+            </thead>
+            <tr>
+                <td th:each="killer : ${killers}">
+                    <img th:class="'killer' + ${killer.getId()}" th:src="${killer.getFile()}" th:onclick="changeOpacityImg([[${killer.getId()}]], 'killer')"></p>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="div_maps">
+        <table>
+            <thead>
+                <td th:each="map : ${maps}">
+                    <p th:class="'map' + ${map.getId()}" th:text="${map.getName()}" th:onclick="changeOpacityImg([[${map.getId()}]], 'map')"></p>
+                </td>
+            </thead>
+            <tr>
+                <td th:each="map : ${maps}">
+                    <img th:class="'map' + ${map.getId()}" th:src="${map.getFile()}" th:onclick="changeOpacityImg([[${map.getId()}]], 'map')">
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="div_addons">
         <table>
             <tr>
                 <td>
-                    <p>Killer1</p>
+                    <img src='/img/addons/common.webp' id="addonCommon" class="addonsImg" onclick="onAddonChoose(this)">
                 </td>
                 <td>
-                    <p>Killer2</p>
+                    <img src='/img/addons/uncommon.webp' id="addonUncommon" class="addonsImg" onclick="onAddonChoose(this)">
                 </td>
                 <td>
-                    <p>Killer3</p>
+                    <img src='/img/addons/rare.webp' id="addonRare" class="addonsImg" onclick="onAddonChoose(this)">
+                </td>
+                <td>
+                    <img src='/img/addons/veryrare.webp' id="addonVeryRare" class="addonsImg" onclick="onAddonChoose(this)">
+                </td>
+                <td>
+                    <img src='/img/addons/ultrarare.webp' id="addonUltraRare" class="addonsImg" onclick="onAddonChoose(this)">
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="popupEnd">
+        <table>
+            <thead>
+                <td colspan="2">
+                    <h1>Wybrano : </h1>
+                </td>
+            </thead>
+            <tr>
+                <td>
+                    <p id="popupKillerName"></p>
+                </td>
+                <td>
+                    <p id="popupMapName"></p>
+                </td>
+            </tr>
+            <tr>
+                <td rowspan="2">
+                    <img id="popupKillerImg">
+                </td>
+                <td>
+                    <img id="popupMapImg">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <table>
+                        <tr>
+                            <td>
+                                <h2>Addony : </h2>
+                            </td>
+                            <td>
+                                <img id="popupAddonImg">
+                            </td>
+                        </tr>
+                    </table>
+
                 </td>
             </tr>
 
-            <thead>
-                <td>
-                    <iframe src="http://localhost:8080/name"
-                            id="name1"
-                            onclick="killers()"
-                    ></iframe>
-                </td>
-                <td>
-                    <iframe src="http://localhost:8080/name" id="name2"></iframe>
-                </td>
-                <td>
-                    <iframe src="http://localhost:8080/name" id="name3"></iframe>
-                </td>
-            </thead>
-
         </table>
-
-
     </div>
 </body>
 </html>
