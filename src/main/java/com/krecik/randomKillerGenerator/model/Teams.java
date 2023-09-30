@@ -1,25 +1,23 @@
 package com.krecik.randomKillerGenerator.model;
 
+
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class Killers {
+public class Teams {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id;
     private String name;
-    private String file;
 
-    public Killers(String name, String file) {
+
+    public Teams(Integer id, String name) {
+        this.id = id;
         this.name = name;
-        this.file = file;
     }
 
-    public Killers() {
+    public Teams() {
     }
 
     public Integer getId() {
@@ -36,13 +34,5 @@ public class Killers {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getFile() {
-        return file;
-    }
-
-    public void setFile(String file) {
-        this.file = file;
     }
 }

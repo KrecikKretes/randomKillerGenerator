@@ -29,7 +29,6 @@ function showAlert() {
 
 
 function changeOpacityImg(id, div){
-
    let elements = document.getElementsByClassName(div + id);
    let e1 = elements[0];
    let e2 = elements[1];
@@ -134,4 +133,18 @@ function onAddonChoose(addonImg){
    document.getElementById("div_killers").style.opacity = 0;
    document.getElementById("div_maps").style.opacity = 0;
    document.getElementById("div_addons").style.opacity = 0;
+}
+
+function save(id){
+   $.ajax({
+      type: 'POST',
+      url: '/url?arr=' + id,
+      error: function(){
+         console.log("error");
+      },
+      success: function(){
+         location.href='http://localhost:8080/' + id + '/match';
+      }
+   })
+
 }

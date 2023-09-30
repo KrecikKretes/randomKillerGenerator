@@ -1,0 +1,79 @@
+*{
+    background: black;
+    color: white;
+}
+table{
+    padding:0;
+    margin: 0 auto;
+}
+td{
+    padding:0;
+    margin: 0 auto;
+    width: 50px;
+    height: 50px;
+    border: 1px solid yellow;
+}
+.teams{
+    border: 1px solid red;
+    text-align: center;
+    vertical-align: middle;
+}
+.button{
+    vertical-align: middle;
+    border: 1px solid white;
+    text-align: center;
+}
+button{
+    background-color: rgb(128, 128, 128);
+    border-radius: 10px;
+    width: 10px;
+    height: 10px;
+}
+
+
+#popupEnd{
+    width: 40%;
+    background: #090909;
+    border-radius: 6px;
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    padding: 0 30px 30px;
+    color: black;
+    visibility: hidden;
+    opacity: 0;
+}
+#popupEnd td{
+    width:auto;
+}
+@keyframes pulse-animation {
+    0% {
+        transform: scale(1);
+    }
+    50%{
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+@keyframes visibility-animation {
+    from {
+        visibility: visible;
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes opacityOff-animation {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}

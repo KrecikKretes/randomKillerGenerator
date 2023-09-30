@@ -3,64 +3,149 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-
-
-  <style>
-    *{
-      background: black;
-    }
-    table{
-      padding:0;
-      margin: 0 auto;
-    }
-    td{
-      width: 50px;
-      height: auto;
-    }
-    .teams{
-      border: 1px solid red;
-    }
-    .downBorder{
-      border-bottom: 1px solid white;
-      width: 40px;
-    }
-    .rightBorder{
-      border-right: 1px solid white;
-      width: 40px;
-    }
-    .button{
-      vertical-align: text-top;
-      border: 1px solid red;
-      text-align: center;
-    }
-
-
-  </style>
+    <link th:href="@{/css/styleLeader.css}" rel="stylesheet" />
+    <script type="text/javascript" rel="script" th:src="@{/js/scriptLeader.js}" ></script>
 </head>
 <body>
+
+    <div id="popupEnd">
+        <table>
+            <thead>
+                <td colspan="2">
+                    <h1>Szczegóły meczu : </h1>
+                </td>
+            </thead>
+            <tr>
+                <td>
+                    <p>
+                        Team 1 :
+                    </p>
+                </td>
+                <td>
+                    <p id="popupTeam1Name"></p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>
+                        Team 2 :
+                    </p>
+                </td>
+                <td>
+                    <p id="popupTeam2Name"></p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>
+                        Wynik :
+                    </p>
+                </td>
+                <td>
+                    <p id="popupResultName"></p>
+                </td>
+            </tr>
+            <tr id="popupKillerTr">
+                <td>
+                    <p>
+                        Killer :
+                    </p>
+                </td>
+                <td>
+                    <p id="popupKillerName"></p>
+                </td>
+            </tr>
+            <tr id="popupMapTr">
+                <td>
+                    <p>
+                        Mapa :
+                    </p>
+                </td>
+                <td>
+                    <p id="popupMapName"></p>
+                </td>
+            </tr>
+            <tr  id="popupAddonTr">
+                <td>
+                    <p>
+                        Addon :
+                    </p>
+                </td>
+                <td>
+                    <p id="popupAddon"></p>
+                </td>
+            </tr>
+        </table>
+        <button th:onclick="changeToDraw([[${matches[0].getId}]])">Click</button>
+    </div>
+
+
     <table>
         <tr>
-          <td class="teams">Team 1 </td>
-          <td>
-            <table>
-              <tr>
-                <td class="downBorder"></td>
-              </tr>
-              <tr>
-                <td class="rightBorder"></td>
-              </tr>
-            </table>
-          </td>
-          <td></td>
+            <td class="teams" th:text="${teams[0].getName()}"></td>
+            <td class="button" rowspan="3">
+                <button th:onclick="showInfo([[${matches[0]}]])"></button>
+            </td>
+            <td colspan="2"></td>
+            <td rowspan = "3" colspan="3"></td>
+            <td colspan="2"></td>
+            <td class="button" rowspan="3">
+                <button></button>
+            </td>
+            <td class="teams" th:text="${teams[4].getName()}"></td>
         </tr>
-
-      <tr>
-        <td></td>
-        <td class="button" colspan="2">
-          Test
-        </td>
-      </tr>
-
+        <tr>
+            <td></td>
+            <td class="teams" th:text="${matches[0].getResult()}"></td>
+            <td class="button" rowspan="5">
+                <button></button>
+            </td>
+            <td class="button" rowspan="5">
+                <button></button>
+            </td>
+            <td class="teams" th:text="${matches[2].getResult()}"></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td class="teams" th:text="${teams[1].getName()}"></td>
+            <td></td>
+            <td></td>
+            <td class="teams" th:text="${teams[5].getName()}"></td>
+        </tr>
+        <tr>
+            <td colspan="3"></td>
+            <td class="teams" th:text="${matches[4].getResult()}"></td>
+            <td class="button">
+                <button></button>
+            </td>
+            <td class="teams" th:text="${matches[5].getResult()}"></td>
+            <td colspan="3"></td>
+        </tr>
+        <tr>
+            <td class="teams" th:text="${teams[2].getName()}"></td>
+            <td class="button" rowspan="3">
+                <button></button>
+            </td>
+            <td></td>
+            <td rowspan = "3" colspan="3"></td>
+            <td></td>
+            <td class="button" rowspan="3">
+                <button>Click</button>
+            </td>
+            <td class="teams" th:text="${teams[6].getName()}"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td class="teams" th:text="${matches[1].getResult()}"></td>
+            <td class="teams" th:text="${matches[3].getResult()}"></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td class="teams" th:text="${teams[3].getName()}"></td>
+            <td colspan="2"></td>
+            <td colspan="2"></td>
+            <td class="teams" th:text="${teams[7].getName()}"></td>
+        </tr>
 
 
     </table>

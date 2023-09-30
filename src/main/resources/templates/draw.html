@@ -6,8 +6,9 @@
 <head>
     <meta charset="UTF-8">
     <title>KillerTitle</title>
-    <link th:href="@{/css/style.css}" rel="stylesheet" />
-    <script type="text/javascript" rel="script" th:src="@{/js/script.js}" ></script>
+    <link th:href="@{/css/styleDraw.css}" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script type="text/javascript" rel="script" th:src="@{/js/scriptDraw.js}" ></script>
 </head>
 <body th:onload="start([[${killers}]], [[${maps}]])">
     <div id="div_killers">
@@ -98,8 +99,8 @@
 
                 </td>
             </tr>
-
         </table>
+        <button th:onclick="save([[${idMatch}]])">Click</button>
     </div>
 </body>
 </html>

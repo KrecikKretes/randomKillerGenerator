@@ -2,10 +2,6 @@ package com.krecik.randomKillerGenerator.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-
 @Entity
 public class Maps {
 
