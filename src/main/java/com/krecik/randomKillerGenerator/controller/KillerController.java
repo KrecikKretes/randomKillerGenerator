@@ -19,12 +19,12 @@ public class KillerController {
     private final TeamsRepository teamsRepository;
     private final MatchesRepository matchesRepository;
 
-    private List<Integer> killersID = new ArrayList<>();
-    private List<Integer> mapsID = new ArrayList<>();
-    private List<Killers> killers = new ArrayList<>();
-    private List<Maps> maps = new ArrayList<>();
-    private List<Teams> teams = new ArrayList<>();
-    private List<Matches> matches = new ArrayList<>();
+    private final List<Integer> killersID = new ArrayList<>();
+    private final List<Integer> mapsID = new ArrayList<>();
+    private final List<Killers> killers = new ArrayList<>();
+    private final List<Maps> maps = new ArrayList<>();
+    private final List<Teams> teams = new ArrayList<>();
+    private final List<Matches> matches = new ArrayList<>();
 
     public KillerController(KillerRepository killerRepository,
                             MapsRepository mapsRepository,
@@ -43,9 +43,15 @@ public class KillerController {
     }
 
 
-    @RequestMapping(value= "/{matchId}/saveDraw", method = RequestMethod.PUT)
+    @RequestMapping(value= "/{matchId}/saveDraw", method = RequestMethod.POST)
     @ResponseBody
-    public String match(@PathVariable("matchId")int matchId, @RequestParam(value = "arr")String [] values){
+    public String match(@PathVariable("matchId")int matchId, Draw draw){
+        Matches matches1 = matchesRepository.findById(matchId).get();
+        matches1.setKiller(killerRepository.findById(draw.getIdKiller()).get().getName());
+        matches1.setMap(mapsRepository.findById(draw.getIdMap()).get().getName());
+        matches1.setAddon(draw.getAddonName());
+
+        matchesRepository.save(matches1);
         return "Work";
     }
 
@@ -82,13 +88,11 @@ public class KillerController {
             mapsRepository.findById(n).get().setFile("/img/maps/" +
                     mapsRepository.findById(n).get().getFile());
             maps.add(mapsRepository.findById(n).get());
-            //System.out.println(maps[i].toString());
-
-
         }
         model.addAttribute("killers",killers);
         model.addAttribute("maps",maps);
         model.addAttribute("idMatch", matchId);
+        model.addAttribute("draw", new Draw());
         return "draw";
     }
 
@@ -102,15 +106,17 @@ public class KillerController {
                 ));
             }
             Collections.shuffle(teams,new Random());
-            for(int i = 0; i < teams.size(); i++){
-                Matches matches1 = new Matches((i+1)/2, teams.get(i).getName(),
-                        teams.get(++i).getName());
-                matchesRepository.save(matches1);
-                matches.add(matches1);
+            for(int i = 0; i < teams.size() + 3; i++){
+                if(i < teams.size()){
+                    matchesRepository.save(new Matches((i+2)/2, teams.get(i).getName(),
+                            teams.get(++i).getName()));
+                }else{
+                    matchesRepository.save(new Matches((i+2)/2,"-","-"));
+                }
             }
-            //Matches test = matchesRepository.findById(1).get();
-            //test.setResult("AAAA");
-            //matchesRepository.save(test);
+            for(int i = 1; i <= matchesRepository.count(); i ++){
+                matches.add(matchesRepository.findById(i).get());
+            }
         }
 
 
@@ -128,6 +134,11 @@ public class KillerController {
     @RequestMapping("/matches")
     public @ResponseBody Iterable<Matches> getAllMatches(){
         return matchesRepository.findAll();
+    }
+
+    @RequestMapping("/teams")
+    public @ResponseBody Iterable<Teams> getAllTeams(){
+        return teamsRepository.findAll();
     }
 
     @RequestMapping("/killer")

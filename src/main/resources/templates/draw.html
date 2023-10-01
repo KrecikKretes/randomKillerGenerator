@@ -100,7 +100,14 @@
                 </td>
             </tr>
         </table>
-        <button th:onclick="save([[${idMatch}]])">Click</button>
+        <button th:onclick="save([[${idMatch}]])">Save</button>
     </div>
+
+
+    <form name="drawForm" id="drawForm" action="#" th:action="@{saveDraw}" th:object="${draw}" method="POST">
+        <input type="number" th:field="*{idKiller}" id="idKillerForm">
+        <input type="number" th:field="*{idMap}" id="idMapForm">
+        <input type="text" th:field="*{addonName}" id="addonForm">
+    </form>
 </body>
 </html>

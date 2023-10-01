@@ -92,6 +92,7 @@ function onMapChoose(div){
    if(div == 'killer'){
       last_idKiller--;
       let a = document.getElementsByClassName('killer' + killersIdArray[last_idKiller]);
+      document.getElementById("idKillerForm").value = killersIdArray[last_idKiller];
       document.getElementById("div_maps").style.animation = "visibility-animation 2s";
       document.getElementById("div_maps").style.visibility = "visible"
       a[1].style.animation= "pulse-animation 1s infinite";
@@ -104,6 +105,7 @@ function onMapChoose(div){
       let a = document.getElementsByClassName('map' + mapIdArray[last_idMap]);
       a[1].style.animation= "pulse-animation 1s infinite";
 
+      document.getElementById("idMapForm").value = mapIdArray[last_idMap];
       document.getElementById("popupMapName").innerText = mapNameArray[last_idMap];
       document.getElementById("popupMapImg").src = mapFileArray[last_idMap];
 
@@ -121,6 +123,7 @@ function onAddonChoose(addonImg){
    addonImg.style.animation= "pulse-animation 1s infinite";
 
    document.getElementById("popupAddonImg").src = addonImg.src;
+   document.getElementById("addonForm").value = addonImg.src;
 
    document.getElementById("popupEnd").style.animation = "visibility-animation 2s";
    document.getElementById("popupEnd").style.visibility  = "visible";
@@ -136,15 +139,6 @@ function onAddonChoose(addonImg){
 }
 
 function save(id){
-   $.ajax({
-      type: 'POST',
-      url: '/url?arr=' + id,
-      error: function(){
-         console.log("error");
-      },
-      success: function(){
-         location.href='http://localhost:8080/' + id + '/match';
-      }
-   })
+   document.forms["drawForm"].submit();
 
 }
