@@ -14,7 +14,8 @@ public class Killers {
     private String name;
     private String file;
 
-    public Killers(String name, String file) {
+    public Killers(Integer id,String name, String file) {
+        this.id = id;
         this.name = name;
         this.file = file;
     }

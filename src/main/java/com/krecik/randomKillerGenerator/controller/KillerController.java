@@ -5,10 +5,18 @@ import com.krecik.randomKillerGenerator.repository.KillerRepository;
 import com.krecik.randomKillerGenerator.repository.MapsRepository;
 import com.krecik.randomKillerGenerator.repository.MatchesRepository;
 import com.krecik.randomKillerGenerator.repository.TeamsRepository;
+import com.krecik.randomKillerGenerator.service.CSVExportService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.web.servlet.ModelAndView;
+import org.supercsv.io.CsvBeanWriter;
+import org.supercsv.io.ICsvBeanWriter;
+import org.supercsv.prefs.CsvPreference;
+
+import java.io.IOException;
 import java.util.*;
 
 @Controller
@@ -18,6 +26,8 @@ public class KillerController {
     private final MapsRepository mapsRepository;
     private final TeamsRepository teamsRepository;
     private final MatchesRepository matchesRepository;
+
+    private final CSVExportService csvExportService;
 
     private final List<Integer> killersID = new ArrayList<>();
     private final List<Integer> mapsID = new ArrayList<>();
@@ -29,11 +39,13 @@ public class KillerController {
     public KillerController(KillerRepository killerRepository,
                             MapsRepository mapsRepository,
                             TeamsRepository teamsRepository,
-                            MatchesRepository matchesRepository) {
+                            MatchesRepository matchesRepository,
+                            CSVExportService csvExportService) {
         this.killerRepository = killerRepository;
         this.mapsRepository = mapsRepository;
         this.teamsRepository = teamsRepository;
         this.matchesRepository = matchesRepository;
+        this.csvExportService = csvExportService;
     }
 
     @GetMapping("/error")
@@ -55,10 +67,10 @@ public class KillerController {
         return "Work";
     }
 
+
     @RequestMapping(value= "/{matchId}/match", method = RequestMethod.PUT)
-    @ResponseBody
     public String match(@PathVariable("matchId")int matchId){
-        return "Work";
+        return "match";
     }
 
     @RequestMapping(value = "/{matchId}/draw",
@@ -69,6 +81,7 @@ public class KillerController {
         mapsID.clear();
         maps.clear();
         Random rand = new Random();
+        System.out.println("------------------"+killerRepository.count());
         int n;
         for(int i = 0; i < 5; i++){
             do {
@@ -97,6 +110,30 @@ public class KillerController {
     }
 
 
+    @RequestMapping("save")
+    public String save(HttpServletResponse servletResponse) throws IOException {
+        servletResponse.setContentType("text/csv");
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=matches.csv";
+        servletResponse.setHeader(headerKey, headerValue);
+
+        List<Matches> matchesList = csvExportService.findAllMatches();
+
+        CsvPreference csvPreference = new CsvPreference.Builder('"', ';', "\r\n").build();
+        ICsvBeanWriter csvWriter = new CsvBeanWriter(servletResponse.getWriter(), csvPreference);
+        String[] csvHeader = {"ID","Team1","Team2","Result","Killer","Map","Addon","Point1","Point2"};
+        String[] nameMapping = {"id","team1","team2","result","killer","map","addon","point1","point2"};
+
+        csvWriter.writeHeader(csvHeader);
+
+        for (Matches matches1 : matchesList) {
+            csvWriter.write(matches1, nameMapping);
+        }
+
+        csvWriter.close();
+        return "save";
+    }
+
     @RequestMapping("leader")
     public String leader(Model model){
         if(teams.isEmpty()){
@@ -118,7 +155,6 @@ public class KillerController {
                 matches.add(matchesRepository.findById(i).get());
             }
         }
-
 
         model.addAttribute("teams", teams);
         model.addAttribute("matches", matches);

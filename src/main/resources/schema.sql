@@ -1,8 +1,10 @@
+DROP TABLE IF EXISTS KILLERS;
+
 CREATE TABLE IF NOT EXISTS KILLERS(
-                     id BIGINT PRIMARY KEY AUTO_INCREMENT,
-                     name VARCHAR(50) NOT NULL ,
-                     file VARCHAR(250) NOT NULL
-);
+                                      id BIGINT PRIMARY KEY AUTO_INCREMENT,
+                                      name VARCHAR(50),
+                                      file VARCHAR(250)
+)AS SELECT * FROM CSVREAD('classpath:killers.csv', 'ID;NAME;FILE', 'charset=UTF-8 fieldSeparator=;');
 
 CREATE TABLE IF NOT EXISTS MAPS(
                     id BIGINT AUTO_INCREMENT PRIMARY KEY ,

@@ -1,36 +1,4 @@
-INSERT INTO KILLERS (name,file) VALUES ('Trapper', 'Trapper.webp');
-INSERT INTO KILLERS (name,file) VALUES ('Wraith', 'Wraith.webp');
-INSERT INTO KILLERS (name,file) VALUES ('Hillybilly', 'Hillybilly.webp');
-INSERT INTO KILLERS (name,file) VALUES ('Nurse', 'Nurse.webp');
-INSERT INTO KILLERS (name,file) VALUES ('Huntress', 'Huntress.webp');
-INSERT INTO KILLERS (name,file) VALUES ('Shape', 'Shape.webp');
-INSERT INTO KILLERS (name,file) VALUES ('Hag', 'Hag.webp');
-INSERT INTO KILLERS (name,file) VALUES ('Doctor', 'Doctor.webp');
-INSERT INTO KILLERS (name,file) VALUES ('Cannibal', 'Cannibal.webp');
-INSERT INTO KILLERS (name,file) VALUES ('Nightmare', 'Nightmare.webp');
-INSERT INTO KILLERS (name,file) VALUES ('Pig', 'Pig.webp');
-INSERT INTO KILLERS (name,file) VALUES ('Clown', 'Clown.webp');
-INSERT INTO KILLERS (name,file) VALUES ('Spirit', 'Spirit.webp');
-INSERT INTO KILLERS (name,file) VALUES ('Legion', 'Legion.webp');
-INSERT INTO KILLERS (name,file) VALUES ('Plague', 'Plague.webp');
-INSERT INTO KILLERS (name,file) VALUES ('Ghost Face', 'Ghostface.webp');
-INSERT INTO KILLERS (name,file) VALUES ('Demogorgon', 'Demogorgon.webp');
-INSERT INTO KILLERS (name,file) VALUES ('Oni', 'Oni.webp');
-INSERT INTO KILLERS (name,file) VALUES ('Deathslinger', 'Deathslinger.webp');
-INSERT INTO KILLERS (name,file) VALUES ('Executioner', 'Executioner.webp');
-INSERT INTO KILLERS (name,file) VALUES ('Blight', 'Blight.webp');
-INSERT INTO KILLERS (name,file) VALUES ( 'Twins', 'Twins.webp');
-INSERT INTO KILLERS (name,file) VALUES ('Trickster', 'Trickster.webp');
-INSERT INTO KILLERS (name,file) VALUES ('Nemesis', 'Nemesis.webp');
-INSERT INTO KILLERS (name,file) VALUES ('Cenobite', 'Cenobite.webp');
-INSERT INTO KILLERS (name,file) VALUES ('Artist', 'Artist.webp');
-INSERT INTO KILLERS (name,file) VALUES ('Onryō', 'Onryō.webp');
-INSERT INTO KILLERS (name,file) VALUES ('Dredge', 'Dredge.webp');
-INSERT INTO KILLERS (name,file) VALUES ('Mastermind', 'Mastermind.webp');
-INSERT INTO KILLERS (name,file) VALUES ('Knight', 'Knight.webp');
-INSERT INTO KILLERS (name,file) VALUES ('Skull Merchant', 'Skullmerchant.webp');
-INSERT INTO KILLERS (name,file) VALUES ('Singularity', 'Singularity.webp');
-INSERT INTO KILLERS (name,file) VALUES ('Xenomorph', 'Xenomorph.webp');
+
 
 INSERT INTO MAPS (id,name,file) VALUES (1, 'Coal Tower', 'CoalTower.webp');
 INSERT INTO MAPS (id,name,file) VALUES (2, 'Groaning Storehouse', 'Storehouse.webp');
